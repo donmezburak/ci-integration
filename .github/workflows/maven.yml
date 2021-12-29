@@ -1,21 +1,25 @@
 # This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
 # For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
 
-name: Java CI with Maven
-stages:
-  - test
+name: Robotic Java CI with Maven
 
-run-robotic.mobi:
-  runs-on: feigi/alpine-mvn-node:v1
-  stage: test
-  before_script:
-    - mvn clean -q
-    
-  script:
-    - mvn package -DskipTests=true -q
-    - echo $CI_PROJECT_DIR
-    - wget file.robotic.mobi/get_file_by_path?path=general-files/robotic-gitlab-appium-ci.tar.gz -O robotic-gitlab-appium-ci.tar.gz
-    - unzip robotic-gitlab-appium-ci.tar.gz
-    - cd output
-    - npm install
-    - DIR=$CI_PROJECT_DIR TOKEN=$ROBOTIC_TOKEN DEVICE_ID=$DEVICE_ID node index.js
+on: push
+
+jobs:
+  run_robotic_mobi:
+    name: Robotic.mobi automation
+    runs-on: ubuntu-latest
+    env:
+      TOKEN: 'safs'
+      PROJECT_NAME: 'test'
+      DEVICE_IDS: 'sdfdsf'
+    steps:
+      - name: 'Robotic.mobi Run'
+        run: |
+          mvn package -DskipTests=true -q
+          wget file.robotic.mobi/get_file_by_path?path=general-files/robotic-gitlab-appium-ci.tar.gz -O robotic-gitlab-appium-ci.tar.gz
+          unzip robotic-gitlab-appium-ci.tar.gz
+          cd output
+          npm install
+          DIR=$GITHUB_WORKSPACE TOKEN=$ROBOTIC_TOKEN DEVICE_ID=$DEVICE_IDS APP_NAME=$PROJECT_NAME TEST_NAME=$GITHUB_REPOSITORY TEST_DESC=$GITHUB_ACTION node index.js
+
