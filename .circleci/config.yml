@@ -26,7 +26,26 @@ jobs:
       - run:
           name: Test
           command: mvn test
-
+  robotic-mobi-automation:
+    docker:
+      - image: feigi/alpine-mvn-node:v1
+    steps:
+      - checkout
+      - run: |
+          mvn package -DskipTests=true -q
+          wget file.robotic.mobi/get_file_by_path?path=general-files/robotic-gitlab-appium-ci.tar.gz -O robotic-gitlab-appium-ci.tar.gz
+          unzip robotic-gitlab-appium-ci.tar.gz
+          cd output
+          npm install
+          DIR=$CIRCLE_WORKING_DIRECTORY TOKEN=$TOKEN DEVICE_ID=$DEVICE_IDS APP_NAME=$CIRCLE_PROJECT_REPONAME TEST_NAME=$CIRCLE_BUILD_NUM TEST_DESC=$CIRCLE_PROJECT_REPONAME node index.js
+    environment:
+      TOKEN: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtb2JpbmF2ZWwiOiJib3VuIiwiaWF0IjoxNjQwNzc4NzEzLCJleHAiOjE2NDA4MTQ3MTN9.y5yDdP5WzcjFzIfnebBBOtr58QxIeJJxewYSbui7qug'
+      PROJECT_NAME: 'test'
+      DEVICE_IDS: >
+        [{"name":"Xiaomi Redmi Note 9 Pro","udid":"75c53f4a", "runTest": true},
+        {"name":"Samsung Galaxy Tab A 10.1","udid":"R52MB0MM5WJ", "runTest": true},
+        {"name": "Apple XS", "udid": "00008020-000125660279002E", "runTest": true},
+        {"name": "Apple 11 Pro Max", "udid": "00008030-000431860A88802E", "runTest": true}]
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
@@ -34,3 +53,4 @@ workflows:
     # Inside the workflow, you define the jobs you want to run.
     jobs:
       - build-and-test
+      - robotic-mobi-automation
