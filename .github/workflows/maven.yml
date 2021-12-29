@@ -9,6 +9,7 @@ jobs:
   run_robotic_mobi:
     name: Robotic.mobi automation
     runs-on: ubuntu-latest
+    uses: actions/checkout@v1
     env:
       TOKEN: 'safs'
       PROJECT_NAME: 'test'
