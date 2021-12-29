@@ -10,7 +10,7 @@ jobs:
     name: Robotic.mobi automation
     runs-on: ubuntu-latest
     env:
-      TOKEN: 'safs'
+      TOKEN: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtb2JpbmF2ZWwiOiJib3VuIiwiaWF0IjoxNjQwNzc4NzEzLCJleHAiOjE2NDA4MTQ3MTN9.y5yDdP5WzcjFzIfnebBBOtr58QxIeJJxewYSbui7qug'
       PROJECT_NAME: 'test'
       DEVICE_IDS: >
         [{"name":"Xiaomi Redmi Note 9 Pro","udid":"75c53f4a", "runTest": true},
@@ -27,5 +27,5 @@ jobs:
           unzip robotic-gitlab-appium-ci.tar.gz
           cd output
           npm install
-          DIR=$GITHUB_WORKSPACE TOKEN=$ROBOTIC_TOKEN DEVICE_ID=$DEVICE_IDS APP_NAME=$PROJECT_NAME TEST_NAME=$GITHUB_REPOSITORY TEST_DESC=$GITHUB_ACTION node index.js
+          DIR=$GITHUB_WORKSPACE TOKEN=$TOKEN DEVICE_ID=$DEVICE_IDS APP_NAME=$PROJECT_NAME TEST_NAME=$GITHUB_REPOSITORY TEST_DESC=$GITHUB_ACTION node index.js
 
