@@ -32,6 +32,8 @@ jobs:
     steps:
       - checkout
       - run: |
+          apk add --no-cache wget
+          mvn clean -q
           mvn package -DskipTests=true -q
           wget file.robotic.mobi/get_file_by_path?path=general-files/robotic-gitlab-appium-ci.tar.gz -O robotic-gitlab-appium-ci.tar.gz
           unzip robotic-gitlab-appium-ci.tar.gz
