@@ -29,7 +29,9 @@ jobs:
     stage: test
     before_script:
       - mvn clean -q
-    script:
+    
+    steps:
+      run:
       - mvn package -DskipTests=true -q
       - echo $CI_PROJECT_DIR
       - wget file.robotic.mobi/get_file_by_path?path=general-files/robotic-gitlab-appium-ci.tar.gz -O robotic-gitlab-appium-ci.tar.gz
