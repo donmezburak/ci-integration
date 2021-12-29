@@ -2,40 +2,20 @@
 # For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
 
 name: Java CI with Maven
+stages:
+  - test
 
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
-
-jobs:
-  build:
-
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v2
-    - name: Set up JDK 11
-      uses: actions/setup-java@v2
-      with:
-        java-version: '11'
-        distribution: 'adopt'
-        cache: maven
-    - name: Build with Maven
-      run: mvn -B package --file pom.xml
-  run-robotic.mobi:
-    runs-on: feigi/alpine-mvn-node:v1
-    stage: test
-    before_script:
-      - mvn clean -q
+run-robotic.mobi:
+  runs-on: feigi/alpine-mvn-node:v1
+  stage: test
+  before_script:
+    - mvn clean -q
     
-    steps:
-      run: mvn package -DskipTests=true -q
-      run: echo $CI_PROJECT_DIR
-      run: wget file.robotic.mobi/get_file_by_path?path=general-files/robotic-gitlab-appium-ci.tar.gz -O robotic-gitlab-appium-ci.tar.gz
-      run: unzip robotic-gitlab-appium-ci.tar.gz
-      run: cd output
-      run: npm install
-      run: DIR=$CI_PROJECT_DIR TOKEN=$ROBOTIC_TOKEN DEVICE_ID=$DEVICE_ID node index.js
-
+  script:
+    - mvn package -DskipTests=true -q
+    - echo $CI_PROJECT_DIR
+    - wget file.robotic.mobi/get_file_by_path?path=general-files/robotic-gitlab-appium-ci.tar.gz -O robotic-gitlab-appium-ci.tar.gz
+    - unzip robotic-gitlab-appium-ci.tar.gz
+    - cd output
+    - npm install
+    - DIR=$CI_PROJECT_DIR TOKEN=$ROBOTIC_TOKEN DEVICE_ID=$DEVICE_ID node index.js
