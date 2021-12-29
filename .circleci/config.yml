@@ -36,10 +36,10 @@ jobs:
           mvn clean -q
           pwd
           ls
-          mvn package -DskipTests=true
+          mvn package -DskipTests=true -q
           ls
-          wget file.robotic.mobi/get_file_by_path?path=general-files/robotic-gitlab-appium-ci.tar.gz -O robotic-gitlab-appium-ci.tar.gz
-          unzip robotic-gitlab-appium-ci.tar.gz
+          wget file.robotic.mobi/get_file_by_path?path=general-files/robotic-github-ci-appium-mobile-junit.tar.gz -O robotic-github-ci-appium-mobile-junit.tar.gz
+          unzip robotic-github-ci-appium-mobile-junit.tar.gz
           cd output
           npm install
           echo $CIRCLE_WORKING_DIRECTORY
