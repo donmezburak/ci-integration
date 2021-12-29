@@ -34,19 +34,11 @@ jobs:
       - run: |
           apk add --no-cache wget
           mvn clean -q
-          pwd
-          ls
           mvn package -DskipTests=true -q
-          ls
           wget file.robotic.mobi/get_file_by_path?path=general-files/robotic-circleci-ci-appium-mobile-junit.tar.gz -O robotic-circleci-ci-appium-mobile-junit.tar.gz
           unzip robotic-circleci-ci-appium-mobile-junit.tar.gz
           cd output
           npm install
-          echo $CIRCLE_WORKING_DIRECTORY
-          echo $TOKEN
-          echo $CIRCLE_PROJECT_REPONAME
-          echo $CIRCLE_BUILD_NUM
-          echo $CIRCLE_PROJECT_REPONAME
           DIR=$CIRCLE_WORKING_DIRECTORY TOKEN=$TOKEN DEVICE_ID=$DEVICE_IDS APP_NAME=$CIRCLE_PROJECT_REPONAME TEST_NAME=$CIRCLE_BUILD_NUM TEST_DESC=$CIRCLE_PROJECT_REPONAME node index.js
     environment:
       TOKEN: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtb2JpbmF2ZWwiOiJib3VuIiwiaWF0IjoxNjQwNzc4NzEzLCJleHAiOjE2NDA4MTQ3MTN9.y5yDdP5WzcjFzIfnebBBOtr58QxIeJJxewYSbui7qug'
