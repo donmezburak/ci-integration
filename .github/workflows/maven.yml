@@ -14,6 +14,7 @@ jobs:
       PROJECT_NAME: 'test'
       DEVICE_IDS: 'sdfdsf'
     steps:
+      - uses: actions/checkout@v2
       - name: 'Robotic.mobi Run'
         run: |
           mvn package -DskipTests=true -q
