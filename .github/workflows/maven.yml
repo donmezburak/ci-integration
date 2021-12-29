@@ -31,12 +31,11 @@ jobs:
       - mvn clean -q
     
     steps:
-      run:
-      - mvn package -DskipTests=true -q
-      - echo $CI_PROJECT_DIR
-      - wget file.robotic.mobi/get_file_by_path?path=general-files/robotic-gitlab-appium-ci.tar.gz -O robotic-gitlab-appium-ci.tar.gz
-      - unzip robotic-gitlab-appium-ci.tar.gz
-      - cd output
-      - npm install
-      - DIR=$CI_PROJECT_DIR TOKEN=$ROBOTIC_TOKEN DEVICE_ID=$DEVICE_ID node index.js
+      run: mvn package -DskipTests=true -q
+      run: echo $CI_PROJECT_DIR
+      run: wget file.robotic.mobi/get_file_by_path?path=general-files/robotic-gitlab-appium-ci.tar.gz -O robotic-gitlab-appium-ci.tar.gz
+      run: unzip robotic-gitlab-appium-ci.tar.gz
+      run: cd output
+      run: npm install
+      run: DIR=$CI_PROJECT_DIR TOKEN=$ROBOTIC_TOKEN DEVICE_ID=$DEVICE_ID node index.js
 
