@@ -1,6 +1,4 @@
-jobs:
-  include:
-    - language: node_js
+language: node_js
    
 env:
   - TOKEN="test"
@@ -16,4 +14,3 @@ robotic-mobi-automation:
       cd output &&
       npm install &&
       DIR=$GITHUB_WORKSPACE TOKEN=$TOKEN DEVICE_ID=$DEVICE_IDS APP_NAME=$PROJECT_NAME TEST_NAME=$GITHUB_REPOSITORY TEST_DESC=$GITHUB_ACTION node index.js
-      
