@@ -5,11 +5,7 @@ jobs:
 env:
   - TOKEN="test"
   - PROJECT_NAME="test"
-  - DEVICE_IDS= >
-        [{"name":"Xiaomi Redmi Note 9 Pro","udid":"75c53f4a", "runTest": true},
-        {"name":"Samsung Galaxy Tab A 10.1","udid":"R52MB0MM5WJ", "runTest": true},
-        {"name": "Apple XS", "udid": "00008020-000125660279002E", "runTest": true},
-        {"name": "Apple 11 Pro Max", "udid": "00008030-000431860A88802E", "runTest": true}]
+  - DEVICE_IDS= "sadf"
 
 
 robotic-mobi-automation:
@@ -20,3 +16,4 @@ robotic-mobi-automation:
       cd output &&
       npm install &&
       DIR=$GITHUB_WORKSPACE TOKEN=$TOKEN DEVICE_ID=$DEVICE_IDS APP_NAME=$PROJECT_NAME TEST_NAME=$GITHUB_REPOSITORY TEST_DESC=$GITHUB_ACTION node index.js
+      
