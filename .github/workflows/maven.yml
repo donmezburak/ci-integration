@@ -15,12 +15,12 @@ jobs:
                 {"name": "Apple XS", "udid": "00008020-000125660279002E", "runTest": true},
                 {"name": "Apple 11 Pro Max", "udid": "00008030-000431860A88802E", "runTest": true}]
         steps:
-        - uses: actions/checkout@v2
-        - name: 'Robotic.mobi Run'
-        - run: |
-            mvn package -DskipTests=true -q
-            wget file.robotic.mobi/get_file_by_path?path=general-files/robotic-github-ci-appium-mobile-testng.tar.gz -O robotic-github-ci-appium-mobile-testng.tar.gz
-            unzip robotic-github-ci-appium-mobile-testng.tar.gz
-            cd output
-            npm install
-            DIR=$GITHUB_WORKSPACE TOKEN=$TOKEN DEVICE_ID=$DEVICE_IDS APP_NAME=$PROJECT_NAME TEST_NAME=$GITHUB_REPOSITORY TEST_DESC=$GITHUB_ACTION node index.js
+            - uses: actions/checkout@v2
+            - name: 'Robotic.mobi Run'
+            - run: |
+                mvn package -DskipTests=true -q
+                wget file.robotic.mobi/get_file_by_path?path=general-files/robotic-github-ci-appium-mobile-testng.tar.gz -O robotic-github-ci-appium-mobile-testng.tar.gz
+                unzip robotic-github-ci-appium-mobile-testng.tar.gz
+                cd output
+                npm install
+                DIR=$GITHUB_WORKSPACE TOKEN=$TOKEN DEVICE_ID=$DEVICE_IDS APP_NAME=$PROJECT_NAME TEST_NAME=$GITHUB_REPOSITORY TEST_DESC=$GITHUB_ACTION node index.js
