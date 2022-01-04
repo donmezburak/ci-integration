@@ -1,31 +1,26 @@
-# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
-# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
-
 name: Robotic Java CI with Maven
 
 on: push
 
 jobs:
-  run_robotic_mobi:
+run_robotic_mobi:
     name: Robotic.mobi automation
     runs-on: ubuntu-latest
     env:
-      TOKEN: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtb2JpbmF2ZWwiOiJib3VuIiwiaWF0IjoxNjQwNzc4NzEzLCJleHAiOjE2NDA4MTQ3MTN9.y5yDdP5WzcjFzIfnebBBOtr58QxIeJJxewYSbui7qug'
-      PROJECT_NAME: 'test'
-      DEVICE_IDS: >
-        [{"name":"Xiaomi Redmi Note 9 Pro","udid":"75c53f4a", "runTest": true},
-        {"name":"Samsung Galaxy Tab A 10.1","udid":"R52MB0MM5WJ", "runTest": true},
-        {"name": "Apple XS", "udid": "00008020-000125660279002E", "runTest": true},
-        {"name": "Apple 11 Pro Max", "udid": "00008030-000431860A88802E", "runTest": true}]
-
+        TOKEN: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtb2JpbmF2ZWwiOiJib3VuIiwiaWF0IjoxNjQxMjkyNTk4LCJleHAiOjE2NDEzMjg1OTh9.xwA5Ed6K1-ZtalZHf6zIoD4X6fm5cqRpT1SEjWDprPY'
+        PROJECT_NAME: 'test'
+        DEVICE_IDS: >
+            [{"name":"Xiaomi Redmi Note 9 Pro","udid":"75c53f4a", "runTest": true},
+            {"name":"Samsung Galaxy Tab A 10.1","udid":"R52MB0MM5WJ", "runTest": true},
+            {"name": "Apple XS", "udid": "00008020-000125660279002E", "runTest": true},
+            {"name": "Apple 11 Pro Max", "udid": "00008030-000431860A88802E", "runTest": true}]
     steps:
-      - uses: actions/checkout@v2
-      - name: 'Robotic.mobi Run'
-        run: |
+    - uses: actions/checkout@v2
+    - name: 'Robotic.mobi Run'
+      run: |
           mvn package -DskipTests=true -q
-          wget file.robotic.mobi/get_file_by_path?path=general-files/robotic-gitlab-appium-ci.tar.gz -O robotic-gitlab-appium-ci.tar.gz
-          unzip robotic-gitlab-appium-ci.tar.gz
+          wget file.robotic.mobi/get_file_by_path?path=general-files/robotic-github-ci-appium-mobile-testng.tar.gz -O robotic-github-ci-appium-mobile-testng.tar.gz
+          unzip robotic-github-ci-appium-mobile-testng.tar.gz
           cd output
           npm install
           DIR=$GITHUB_WORKSPACE TOKEN=$TOKEN DEVICE_ID=$DEVICE_IDS APP_NAME=$PROJECT_NAME TEST_NAME=$GITHUB_REPOSITORY TEST_DESC=$GITHUB_ACTION node index.js
-
