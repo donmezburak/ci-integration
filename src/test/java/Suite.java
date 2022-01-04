@@ -36,7 +36,7 @@ public class Suite {
             capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, Platform.ANDROID);
             capabilities.setCapability("autoGrantPermissions", true);
 
-            Driver type = Driver.ROBOTIC_REMOTE;
+            Driver type = Driver.ROBOTIC;
             String urlString = "";
             int port = Integer.valueOf(System.getProperty("roboticPort", "4723"));
 
