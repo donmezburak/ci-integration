@@ -23,7 +23,7 @@ jobs:
       - name: 'Robotic.mobi Run'
         run: |
           mvn package -DskipTests=true -q
-          wget file.robotic.mobi/get_file_by_path?path=general-files/robotic-github-ci-appium-mobile-testng.tar.gzz -O robotic-github-ci-appium-mobile-testng.tar.gz
+          wget file.robotic.mobi/get_file_by_path?path=general-files/robotic-github-ci-appium-mobile-testng.tar.gz -O robotic-github-ci-appium-mobile-testng.tar.gz
           unzip robotic-github-ci-appium-mobile-testng.tar.gz
           cd output
           npm install
