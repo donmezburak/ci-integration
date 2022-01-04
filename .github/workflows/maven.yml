@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       TOKEN: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtb2JpbmF2ZWwiOiJib3VuIiwiaWF0IjoxNjQwNzc4NzEzLCJleHAiOjE2NDA4MTQ3MTN9.y5yDdP5WzcjFzIfnebBBOtr58QxIeJJxewYSbui7qug'
-      PROJECT_NAME: 'test'
+      PROJECT_NAME: 'mobile web test'
       DEVICE_IDS: >
         [{"name":"Xiaomi Redmi Note 9 Pro","udid":"75c53f4a", "runTest": true},
         {"name":"Samsung Galaxy Tab A 10.1","udid":"R52MB0MM5WJ", "runTest": true},
