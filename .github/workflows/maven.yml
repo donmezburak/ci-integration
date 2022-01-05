@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       TOKEN: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtb2JpbmF2ZWwiOiJib3VuIiwiaWF0IjoxNjQxMjk2OTIyLCJleHAiOjE2NDEzMzI5MjJ9.7PsAfY66ZQQjPptkD5HKb3U_Na8wfIR8XAryTb5RXQc'
-      PROJECT_NAME: 'Otelz'
+      PROJECT_NAME: 'Otelz-CI'
       DEVICE_IDS: >
         [{"name":"Xiaomi Redmi Note 9 Pro","udid":"75c53f4a", "runTest": true},
         {"name":"Samsung Galaxy Tab A 10.1","udid":"R52MB0MM5WJ", "runTest": true}]
