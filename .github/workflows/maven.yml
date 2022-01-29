@@ -11,11 +11,12 @@ jobs:
       PROJECT_NAME: 'Otelz-CI'
       DEVICE_IDS: >
         [{"name":"Xiaomi Redmi Note 9 Pro","udid":"75c53f4a", "runTest": true},
-        {"name":"Samsung Galaxy Tab A 10.1","udid":"R52MB0MM5WJ", "runTest": true}]
+        {"name":"Samsung Galaxy Tab A 10.1","udid":"R52MB0MM5WJ", "runTest": true},
+        {"name":"Samsung A51","udid":"RZ8NC07PRRE", "runTest": true}]
 
     steps:
       - uses: actions/checkout@v2
-      - name: 'Robotic.mobi Run'
+      - name: 'Robotic.mobi Run - test'
         run: |
           mvn package -DskipTests=true -q
           wget file.robotic.mobi/get_file_by_path?path=general-files/robotic-github-ci-appium-mobile-testng.tar.gz -O robotic-github-ci-appium-mobile-testng.tar.gz
